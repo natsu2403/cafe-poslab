@@ -36,6 +36,7 @@ function askStaffLogin() {
   currentStaff = found;
   document.getElementById("currentStaffDisplay").textContent = "担当：" + found.name;
   postData({ type: "login", staffNumber: found.number, staffName: found.name });
+  alert(found.name + " さんでログインしました");
 }
 
 // ===== サーバーから全データ取得 =====
@@ -512,15 +513,19 @@ function renderStaff() {
   container.innerHTML = "";
   staff.forEach((s, index) => {
     let div = document.createElement("div");
-    div.style.cssText = "display:flex;align-items:center;gap:8px;padding:4px 0;";
-    let text = document.createElement("span");
-    text.textContent = s.number + " : " + s.name;
-    text.style.flex = "1";
+    div.style.cssText = "display:flex;align-items:center;gap:8px;padding:5px 8px;background:#f9f9f9;border-radius:6px;margin-bottom:4px;";
+    let number = document.createElement("span");
+    number.textContent = s.number;
+    number.style.cssText = "font-weight:bold;color:#555;width:50px;font-size:13px;";
+    let name = document.createElement("span");
+    name.textContent = s.name;
+    name.style.cssText = "flex:1;font-size:13px;";
     let del = document.createElement("button");
-    del.textContent = "削除";
-    del.style.cssText = "background:red;color:white;border:none;border-radius:6px;padding:4px 8px;cursor:pointer;";
+    del.textContent = "×";
+    del.style.cssText = "background:red;color:white;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:12px;flex-shrink:0;padding:0;";
     del.onclick = () => deleteStaff(index, s.name);
-    div.appendChild(text);
+    div.appendChild(number);
+    div.appendChild(name);
     div.appendChild(del);
     container.appendChild(div);
   });

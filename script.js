@@ -278,7 +278,8 @@ async function confirmNumber() {
 function loadHistoryFromServer() {
   const historyList = document.getElementById("history");
   historyList.innerHTML = "";
-  history.forEach((h, index) => {
+  [...history].reverse().forEach((h, index) => {
+    index = history.length - 1 - index;
     const li = document.createElement("li");
     li.style.cssText = "display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #eee;";
     let itemsText = Object.entries(h.items || {})

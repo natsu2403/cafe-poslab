@@ -27,7 +27,7 @@ window.onload = function () {
 function askStaffLogin() {
   let num = prompt("従業員番号（4桁）を入力してください");
   if (!num) { askStaffLogin(); return; }
-  const found = staff.find(s => s.number === String(num));
+  const found = staff.find(s => String(s.number) === String(num).padStart(4, '0') || String(s.number) === String(num));
   if (!found) {
     alert("登録されていない番号です");
     askStaffLogin();

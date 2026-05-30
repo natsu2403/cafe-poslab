@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>簡易POS</title>
   <style>
     #history li {
@@ -126,6 +127,121 @@
       font-weight: bold;
       color: #1565c0;
       margin-bottom: 8px;
+    }
+
+    /* ===== スマホ対応 (480px以下) ===== */
+    @media (max-width: 480px) {
+
+      /* ナビゲーションボタン */
+      body > button {
+        width: calc(50% - 6px);
+        font-size: 15px;
+        padding: 12px 0;
+        border: none;
+        border-radius: 8px;
+        background: #333;
+        color: white;
+        cursor: pointer;
+      }
+
+      /* 2カラム→縦1列 */
+      .container {
+        flex-direction: column;
+      }
+      .left {
+        width: 100%;
+        padding: 0 10px;
+        box-sizing: border-box;
+      }
+      .right {
+        width: 100%;
+        height: auto;
+        position: static;
+        box-shadow: none;
+        padding: 10px;
+        box-sizing: border-box;
+      }
+
+      /* カートの高さを抑える */
+      #cart {
+        max-height: 150px;
+      }
+
+      /* 商品グリッドを2列に */
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+      }
+
+      /* 商品ボタンを大きめに */
+      #productList button {
+        font-size: 15px;
+        padding: 14px 8px;
+        min-height: 56px;
+      }
+
+      /* 合計金額を大きく */
+      .total-area {
+        font-size: 20px;
+        padding: 8px 0;
+      }
+
+      /* 支払いボタン */
+      .payment-buttons button {
+        padding: 14px;
+        font-size: 16px;
+      }
+
+      /* 会計ボタンを大きく目立たせる */
+      .checkout-area button {
+        font-size: 20px;
+        padding: 16px;
+        background: #e53935;
+        border-radius: 12px;
+      }
+
+      /* 番号パッドのボタンを小さめに */
+      .pad {
+        grid-template-columns: repeat(3, 90px);
+        gap: 8px;
+      }
+      .pad button {
+        font-size: 22px;
+        padding: 18px;
+      }
+      #displayNumber {
+        font-size: 48px;
+        margin: 12px;
+      }
+
+      /* 履歴画面のボタン横並び */
+      #historyScreen > button {
+        display: inline-block;
+        width: auto;
+        margin: 4px 4px 4px 0;
+        font-size: 14px;
+        padding: 8px 14px;
+        background: #555;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+
+      /* 管理者ボタン群 */
+      #adminControls button {
+        display: inline-block;
+        width: auto;
+        margin: 4px 4px 4px 0;
+        font-size: 14px;
+        padding: 8px 14px;
+      }
+
+      /* スタッフ表示バッジ */
+      #currentStaffDisplay {
+        font-size: 13px;
+        padding: 5px 10px;
+      }
     }
   </style>
 </head>

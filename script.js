@@ -74,9 +74,13 @@ async function postData(body) {
 
 // ===== 今日の日付 =====
 function getToday() {
-  return new Date().toISOString().split("T")[0];
+  return new Date().toLocaleString("ja-JP", { timeZone: "Asia/Tokyo" })
+    .split(" ")[0]
+    .replace(/\//g, "-")
+    .replace(/^(\d+)-(\d+)-(\d+)$/, (_, y, m, d) =>
+      y + "-" + m.padStart(2, "0") + "-" + d.padStart(2, "0")
+    );
 }
-
 // ===== 日付を見やすく（例：4月19日） =====
 function formatDate(dateStr) {
   if (!dateStr) return "";
@@ -233,7 +237,11 @@ async function confirmNumber() {
   }
   let today = getToday();
   const record = {
-    date:        new Date().toISOString(),
+    date: new Intl.DateTimeFormat("ja-JP", {
+  timeZone: "Asia/Tokyo",
+  year: "numeric", month: "2-digit", day: "2-digit",
+  hour: "2-digit", minute: "2-digit", second: "2-digit"
+}).format(new Date()),
     dateKey:     today,
     number:      tempNumber,
     total:       total,
